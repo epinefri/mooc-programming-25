@@ -1,0 +1,10 @@
+*.pyc
+*.json
+__*
+*.toml
+utils.py
+points.py
+result.py
+runner.py
+test*
+course_config.toml
