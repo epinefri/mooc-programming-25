@@ -1,6 +1,8 @@
 def print_sudoku(sudoku: list):
+    row_num = 0
     for row in sudoku:
         count = 0
+        row_num += 1
         for element in row:
             if count in (3, 6):
                 print(" ", end="")
@@ -9,7 +11,10 @@ def print_sudoku(sudoku: list):
             else:
                 print(element,"", end="")
             count += 1
+        
         print()
+        if row_num in (3,6):
+            print()
 
 def add_number(sudoku: list, row_no: int, column_no: int, number:int):
     sudoku[row_no][column_no] = number
