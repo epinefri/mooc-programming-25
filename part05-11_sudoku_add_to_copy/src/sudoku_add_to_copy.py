@@ -1,4 +1,4 @@
-# Write your solution here
+
 def print_sudoku(sudoku: list):
     row_num = 0
     for row in sudoku:
@@ -18,16 +18,11 @@ def print_sudoku(sudoku: list):
             print()
 
 def copy_and_add(sudoku: list, row_no: int, column_no: int, number: int):
-    copy = []
-    i = 0
-    for i in range(len(sudoku)):
-        
-        i+=1
-
-
-
-    copy[row_no][column_no] = number
-    return copy
+    cpy = []
+    for row in sudoku:
+        cpy.append(row[:])
+    cpy[row_no][column_no] = number
+    return cpy
 
 
 if __name__ == "__main__":
