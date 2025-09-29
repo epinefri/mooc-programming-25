@@ -19,18 +19,19 @@ def print_student(students: dict, student_name: str):
         print(f"{student_name}: no such person in the database")
 
 
-def add_course(students: dict, student_name: str, course: tuple):
+def add_course(students: dict, student_name: str, new_course: tuple):
     repeated = 0
-    passed = 1
     i = 0
-    for entry in students[student_name]:
-        if course[0] == entry[0] and course[1] > entry[1]:
+    for course in students[student_name]:
+        if new_course[0] == course[0]:
             repeated = 1
-            students[student_name][i] = course
-        i +=1
-    if not repeated and passed:
-        if course[1] > 0:
-            students[student_name].append(course)
+            if new_course[1] > course[1]:
+                students[student_name][i] = new_course
+        i += 1
+
+    if not repeated:
+        if new_course[1] > 0:
+            students[student_name].append(new_course)
          
 def summary(students):
     students_count = len(students)
@@ -42,7 +43,7 @@ def summary(students):
         if len(courses) > most_students:
             most_students = len(courses)
             most_courses_stud = student
-    print("most coursed completed", most_students, most_courses_stud)
+    print("most courses completed", most_students, most_courses_stud)
 
     averages = {}
     best_avg = 0
@@ -62,9 +63,12 @@ def summary(students):
 if __name__ == "__main__":
     students = {}
     add_student(students, "Peter")
-    add_course(students, "Peter", ("Software Development Methods", 5))
-    add_course(students, "Peter", ("Software Development Methods", 1))
+    add_course(students, "Peter", ("Introduction to Programming", 2))
+    add_course(students, "Peter", ("Advanced Course in Programming", 2))
+    add_course(students, "Peter", ("Data Structures and Algorithms", 0))
+    add_course(students, "Peter", ("Introduction to Programming", 1))
     print_student(students, "Peter")
+    print(students)
 
 
 
