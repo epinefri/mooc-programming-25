@@ -1,6 +1,6 @@
 # write your solution here
 
-if False:
+if True:
     # this is never executed
     student_info = input("Student information: ")
     exercise_data = input("Exercises completed: ")
@@ -12,18 +12,20 @@ else:
     exam_points = "exam_points1.csv"
 
 total_points  = {}
+student_names = {}
 
-print("students_info:")
+#print("students_info:")
 with open(student_info) as file:
     for line in file:
         parts = line.split(';')
-        for part in parts:
-            part = part.strip()
-            print(part, end = ' ')
-        print()
+        if parts[0] == 'id':
+            continue
+        student_names[parts[0]] = parts[1].strip() + ' ' + parts[2].strip()
+            
+#print(student_names)
 
-print("____")
-print("exercise_data:")
+#print("____")
+#print("exercise_data:")
 with open(exercise_data) as file:
     for line in file:
         parts = line.split(';')
@@ -38,8 +40,8 @@ with open(exercise_data) as file:
     for id in total_points:
         total_points[id] = total_points[id] // 4
 
-    print(total_points)
-    print()
+    #print(total_points)
+    #print()
     """
         10% -> 1 point  = 4 exercises
         20% -> 2 points = 8 exercises
@@ -54,8 +56,8 @@ with open(exercise_data) as file:
     """
 
 
-print("____")
-print("exam_points:")
+#print("____")
+#print("exam_points:")
 with open(exam_points) as file:
     for line in file:
         parts = line.split(';')
@@ -64,8 +66,8 @@ with open(exam_points) as file:
         for part in parts[1:]:
             part = part.strip()
             total_points[parts[0]] += int(part)
-    print(total_points)
-    print()
+    #print(total_points)
+    #print()
 
 for id, grade in total_points.items():
     if grade <= 14:
@@ -81,6 +83,9 @@ for id, grade in total_points.items():
     else:
         total_points[id] = 5
 
-print(total_points)
+#print(total_points)
+
+for id, grade in total_points.items():
+    print(student_names[id], grade)
 
 
