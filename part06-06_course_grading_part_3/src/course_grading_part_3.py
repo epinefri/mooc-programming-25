@@ -76,3 +76,6 @@ print("\n total:", tot_pts)
 
 
 print("\n")
+
+for id, name in names.items():
+    print(name, exec_nbr[id], exec_pts[id])
